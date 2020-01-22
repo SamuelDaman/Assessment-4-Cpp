@@ -1,6 +1,10 @@
 //  tList.h
 
 #pragma once
+#include <iostream>
+
+using std::cout;
+using std::endl;
 
 template <typename T>
 class tList
@@ -38,7 +42,7 @@ public:
 	//  Push and pop functions.
 	void push_front(const T& val)
 	{
-		Node * newNode;
+		Node * newNode = new Node;
 		newNode->data = val;
 		newNode->next = head;
 		if (tail == nullptr)
@@ -58,7 +62,7 @@ public:
 	}
 	void push_back(const T& val)
 	{
-		Node * newNode;
+		Node * newNode = new Node;
 		newNode->data = val;
 		newNode->prev = tail;
 		if (head == nullptr)
@@ -96,7 +100,42 @@ public:
 	}
 
 	//  Remove function.
-	void remove(const T& val);
+	void remove(const T& val)
+	{
+		Node * node = head;
+		while (true)
+		{
+			if (node->next == nullptr)
+			{
+				if (node->data == val)
+				{
+					node = nullptr;
+				}
+				cout << "Next node is null." << endl;
+				return;
+			}
+			else if (node->prev == nullptr)
+			{
+				if (node->data == val)
+				{
+					node = node->next;
+					node->prev = nullptr;
+				}
+				cout << "Last node was null." << endl;
+			}
+			else
+			{
+				if (node->data == val)
+				{
+					//node->prev->next = node->next;
+					//node->next->prev = node->prev;
+					node = node->next;
+					cout << "Current Node: " << node->data << endl;
+				}
+			}
+		}
+		delete node;
+	}
 
 	//  Miscellaneous functions.
 	bool empty() const;
@@ -123,21 +162,48 @@ public:
 		}
 		bool operator!=(const iterator& rhs) const
 		{
-			return !(iterator != rhs);
+			return (iterator != rhs);
 		}
 		T& operator*() const
 		{
-			Node * currentNode;
-			return cur & currentNode;
+			return cur->data;
 		}
-		iterator& operator++();
-		iterator operator++(int);
-		iterator& operator--();
-		iterator operator--(int);
+		iterator& operator++()
+		{
+			return ++this;
+		}
+		iterator operator++(int)
+		{
+			return this++;
+		}
+		iterator& operator--()
+		{
+			return --this;
+		}
+		iterator operator--(int)
+		{
+			return this--;
+		}
 	};
 
-	iterator begin();
-	const iterator begin() const;
-	iterator end();
-	const iterator end() const;
+	iterator begin()
+	{
+		iterator newIterator = iterator(head);
+		return newIterator;
+	}
+	const iterator begin() const
+	{
+		iterator newIterator = iterator(head);
+		return newIterator;
+	}
+	iterator end()
+	{
+		iterator newIterator = iterator(tail);
+		return newIterator;
+	}
+	const iterator end() const
+	{
+		iterator newIterator = iterator(tail);
+		return newIterator;
+	}
 };
