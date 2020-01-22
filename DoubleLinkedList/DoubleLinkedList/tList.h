@@ -105,36 +105,46 @@ public:
 		Node * node = head;
 		while (true)
 		{
+			//if (node->next == nullptr)
+			//{
+			//	if (node->data == val)
+			//	{
+			//		node = nullptr;
+			//	}
+			//	cout << "Next node is null." << endl;
+			//	return;
+			//}
+			//else if (node->prev == nullptr)
+			//{
+			//	if (node->data == val)
+			//	{
+			//		node = node->next;
+			//		node->prev = nullptr;
+			//	}
+			//	cout << "Last node was null." << endl;
+			//}
+			//else
+			//{
+			//	if (node->data == val)
+			//	{
+			//		//node->prev->next = node->next;
+			//		//node->next->prev = node->prev;
+			//		node = node->next;
+			//		//node->prev = node->prev->prev;
+			//		cout << "Current Node: " << node->data << endl;
+			//	}
+			//}
+			
 			if (node->next == nullptr)
 			{
-				if (node->data == val)
-				{
-					node = nullptr;
-				}
-				cout << "Next node is null." << endl;
+				cout << "The next node is null" << endl;
 				return;
 			}
-			else if (node->prev == nullptr)
+			else if (node->next->data == val)
 			{
-				if (node->data == val)
-				{
-					node = node->next;
-					node->prev = nullptr;
-				}
-				cout << "Last node was null." << endl;
-			}
-			else
-			{
-				if (node->data == val)
-				{
-					//node->prev->next = node->next;
-					//node->next->prev = node->prev;
-					node = node->next;
-					cout << "Current Node: " << node->data << endl;
-				}
+				
 			}
 		}
-		delete node;
 	}
 
 	//  Miscellaneous functions.
