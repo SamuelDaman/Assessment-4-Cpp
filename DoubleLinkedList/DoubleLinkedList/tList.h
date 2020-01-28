@@ -28,11 +28,26 @@ public:
 	}
 	tList(const tList& other)
 	{
-		this = other;
+		Node * node = other.head;
+
+		while (node != nullptr)
+		{
+			if (node->next == nullptr)
+			{
+				push_back(node->data);
+				break;
+			}
+			else
+			{
+				push_back(node->data);
+				node = node->next;
+			}
+		}
 	}
 	tList& operator=(const tList &rhs)
 	{
-		this = rhs;
+		tList newList = tList(rhs);
+		return newList;
 	}
 	~tList()
 	{
@@ -65,14 +80,14 @@ public:
 	{
 		if (head != nullptr)
 		{
-			Node * newNode = head;
+			Node * burnNode = head;
 			if (head->next != nullptr)
 			{
 				head->next->prev = nullptr;
+				head = head->next;
 			}
-			head = head->next;
-			newNode = nullptr;
-			delete newNode;
+			burnNode = nullptr;
+			delete burnNode;
 		}
 	}
 	void push_back(const T& val)
@@ -97,14 +112,14 @@ public:
 	{
 		if (tail != nullptr)
 		{
-			Node * newNode = tail;
+			Node * burnNode = tail;
 			if (tail->prev != nullptr)
 			{
 				tail->prev->next = nullptr;
+				tail = tail->prev;
 			}
-			tail = tail->prev;
-			newNode = nullptr;
-			delete newNode;
+			burnNode = nullptr;
+			delete burnNode;
 		}
 	}
 
@@ -124,6 +139,28 @@ public:
 	const T& back() const
 	{
 		return tail->data;
+	}
+
+	//  Size Check
+	size_t listSize()
+	{
+		Node * node = head;
+		size_t listCounter = 0;
+
+		while (node != nullptr)
+		{
+			if (node->next == nullptr)
+			{
+				listCounter++;
+				break;
+			}
+			else
+			{
+				node = node->next;
+				listCounter++;
+			}
+		}
+		return listCounter;
 	}
 
 	//  Remove function.
@@ -170,36 +207,20 @@ public:
 
 	//  Miscellaneous functions.
 	bool empty() const
-	{	
+	{
 		return (head == nullptr && tail == nullptr);
 	}
 	void clear()
 	{
-		Node * node = head;
+		size_t listCount = listSize();
 
-		while (node != nullptr)
+		for (size_t i = 0; i < listCount; i++)
 		{
-			if (node->next == nullptr)
-			{
-				cout << "End of the list" << endl;
-				break;
-			}
-			else if (node->next != nullptr)
-			{
-				cout << "Deleting node" << endl;
-				node = node->next;
-				Node * burnNode = node->prev;
-				burnNode = nullptr;
-				delete burnNode;
-			}
+			pop_front();
 		}
 
-		node = nullptr;
-		delete node;
 		head = nullptr;
-		delete head;
 		tail = nullptr;
-		delete tail;
 	}
 	void resize(size_t newSize)
 	{

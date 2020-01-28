@@ -37,10 +37,19 @@ int main()
 	//test.remove(2);
 	//test.remove(7);
 
-	test.resize(7);
+	//test.resize(9);
+
+	tList<int> copy = tList<int>(test);
+
+	//copy.pop_front();
+
+	//copy = test;
 
 	cout << "front: " << test.front() << endl;
 	cout << "back: " << test.back() << endl;
+
+	cout << "front: " << copy.front() << endl;
+	cout << "back: " << copy.back() << endl;
 
 	test.clear();
 
