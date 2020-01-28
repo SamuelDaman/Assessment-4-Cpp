@@ -24,6 +24,7 @@ public:
 	tList()
 	{
 		head = nullptr;
+		tail = nullptr;
 	}
 	tList(const tList& other)
 	{
@@ -35,7 +36,9 @@ public:
 	}
 	~tList()
 	{
+		head = nullptr;
 		delete head;
+		tail = nullptr;
 		delete tail;
 	}
 
@@ -45,9 +48,16 @@ public:
 		Node * newNode = new Node;
 		newNode->data = val;
 		newNode->next = head;
+		newNode->prev = nullptr;
 		if (tail == nullptr)
 		{
 			tail = newNode;
+			tail->next = nullptr;
+			tail->prev = nullptr;
+		}
+		else
+		{
+			head->prev = newNode;
 		}
 		head = newNode;
 	}
@@ -56,7 +66,12 @@ public:
 		if (head != nullptr)
 		{
 			Node * newNode = head;
+			if (head->next != nullptr)
+			{
+				head->next->prev = nullptr;
+			}
 			head = head->next;
+			newNode = nullptr;
 			delete newNode;
 		}
 	}
@@ -65,9 +80,16 @@ public:
 		Node * newNode = new Node;
 		newNode->data = val;
 		newNode->prev = tail;
+		newNode->next = nullptr;
 		if (head == nullptr)
 		{
 			head = newNode;
+			head->next = nullptr;
+			head->prev = nullptr;
+		}
+		else
+		{
+			tail->next = newNode;
 		}
 		tail = newNode;
 	}
@@ -76,7 +98,12 @@ public:
 		if (tail != nullptr)
 		{
 			Node * newNode = tail;
+			if (tail->prev != nullptr)
+			{
+				tail->prev->next = nullptr;
+			}
 			tail = tail->prev;
+			newNode = nullptr;
 			delete newNode;
 		}
 	}
@@ -102,47 +129,41 @@ public:
 	//  Remove function.
 	void remove(const T& val)
 	{
+		while (head != nullptr && head->data == val)
+		{
+			cout << "The first node will be deleted" << endl;
+			pop_front();
+		}
+
 		Node * node = head;
+
 		while (true)
 		{
-			//if (node->next == nullptr)
-			//{
-			//	if (node->data == val)
-			//	{
-			//		node = nullptr;
-			//	}
-			//	cout << "Next node is null." << endl;
-			//	return;
-			//}
-			//else if (node->prev == nullptr)
-			//{
-			//	if (node->data == val)
-			//	{
-			//		node = node->next;
-			//		node->prev = nullptr;
-			//	}
-			//	cout << "Last node was null." << endl;
-			//}
-			//else
-			//{
-			//	if (node->data == val)
-			//	{
-			//		//node->prev->next = node->next;
-			//		//node->next->prev = node->prev;
-			//		node = node->next;
-			//		//node->prev = node->prev->prev;
-			//		cout << "Current Node: " << node->data << endl;
-			//	}
-			//}
-			
 			if (node->next == nullptr)
 			{
-				cout << "The next node is null" << endl;
-				return;
+				cout << "End of the list" << endl;
+				break;
 			}
 			else if (node->next->data == val)
 			{
-				
+				cout << "The next node will be deleted" << endl;
+				Node * newNode = node->next;
+				if (node->next->next != nullptr)
+				{
+					node->next = node->next->next;
+					node->next->prev = node;
+				}
+				else
+				{
+					pop_back();
+				}
+				newNode = nullptr;
+				delete newNode;
+			}
+			else
+			{
+				cout << "Moving on to the next node" << endl;
+				node = node->next;
 			}
 		}
 	}
@@ -208,12 +229,12 @@ public:
 	}
 	iterator end()
 	{
-		iterator newIterator = iterator(tail);
+		iterator newIterator = iterator(tail->next);
 		return newIterator;
 	}
 	const iterator end() const
 	{
-		iterator newIterator = iterator(tail);
+		iterator newIterator = iterator(tail->next);
 		return newIterator;
 	}
 };
