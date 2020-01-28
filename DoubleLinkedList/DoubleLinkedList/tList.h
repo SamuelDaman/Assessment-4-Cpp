@@ -203,7 +203,56 @@ public:
 	}
 	void resize(size_t newSize)
 	{
+		Node * node = head;
+		size_t listSize = 0;
 
+		while (node != nullptr)
+		{
+			if (node->next == nullptr)
+			{
+				listSize++;
+				break;
+			}
+			else
+			{
+				node = node->next;
+				listSize++;
+			}
+		}
+
+		cout << "list size: " << listSize << endl;
+
+		if (listSize == newSize)
+		{
+			return;
+		}
+		else if (listSize > newSize)
+		{
+			for (size_t i = newSize; i < listSize; i++)
+			{
+				pop_back();
+			}
+		}
+		else if (listSize < newSize)
+		{
+			for (size_t i = listSize; i < newSize; i++)
+			{
+				Node * newNode = new Node;
+				newNode->prev = tail;
+				newNode->next = nullptr;
+				if (head == nullptr)
+				{
+					head = newNode;
+					head->next = nullptr;
+					head->prev = nullptr;
+				}
+				else
+				{
+					tail->next = newNode;
+				}
+				tail = newNode;
+			}
+		}
 	}
 
 	class iterator

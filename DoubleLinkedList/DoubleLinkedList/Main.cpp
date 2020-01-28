@@ -29,13 +29,15 @@ int main()
 
 	cout << "is empty: " << test.empty() << endl;
 
-	test.remove(1);
-	test.remove(3);
-	test.remove(5);
-	test.remove(4);
-	test.remove(2);
+	//test.remove(1);
+	//test.remove(3);
+	//test.remove(5);
+	//test.remove(4);
+	//test.remove(2);
 	//test.remove(2);
 	//test.remove(7);
+
+	test.resize(7);
 
 	cout << "front: " << test.front() << endl;
 	cout << "back: " << test.back() << endl;
