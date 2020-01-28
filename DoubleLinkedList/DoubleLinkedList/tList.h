@@ -46,15 +46,26 @@ public:
 	}
 	tList& operator=(const tList &rhs)
 	{
-		tList newList = tList(rhs);
-		return newList;
+		Node * node = rhs.head;
+
+		while (node != nullptr)
+		{
+			if (node->next == nullptr)
+			{
+				push_back(node->data);
+				break;
+			}
+			else
+			{
+				push_back(node->data);
+				node = node->next;
+			}
+		}
+		return *this;
 	}
 	~tList()
 	{
-		head = nullptr;
-		delete head;
-		tail = nullptr;
-		delete tail;
+		
 	}
 
 	//  Push and pop functions.

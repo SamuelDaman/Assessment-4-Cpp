@@ -39,11 +39,12 @@ int main()
 
 	//test.resize(9);
 
-	tList<int> copy = tList<int>(test);
+	//tList<int> copy = tList<int>(test);
+	tList<int> copy;
 
-	//copy.pop_front();
+	copy.pop_front();
 
-	//copy = test;
+	copy = test;
 
 	cout << "front: " << test.front() << endl;
 	cout << "back: " << test.back() << endl;
