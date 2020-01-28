@@ -137,7 +137,7 @@ public:
 
 		Node * node = head;
 
-		while (true)
+		while (node != nullptr)
 		{
 			if (node->next == nullptr)
 			{
@@ -147,7 +147,7 @@ public:
 			else if (node->next->data == val)
 			{
 				cout << "The next node will be deleted" << endl;
-				Node * newNode = node->next;
+				Node * burnNode = node->next;
 				if (node->next->next != nullptr)
 				{
 					node->next = node->next->next;
@@ -157,8 +157,8 @@ public:
 				{
 					pop_back();
 				}
-				newNode = nullptr;
-				delete newNode;
+				burnNode = nullptr;
+				delete burnNode;
 			}
 			else
 			{
@@ -169,9 +169,42 @@ public:
 	}
 
 	//  Miscellaneous functions.
-	bool empty() const;
-	void clear();
-	void resize(size_t newSize);
+	bool empty() const
+	{	
+		return (head == nullptr && tail == nullptr);
+	}
+	void clear()
+	{
+		Node * node = head;
+
+		while (node != nullptr)
+		{
+			if (node->next == nullptr)
+			{
+				cout << "End of the list" << endl;
+				break;
+			}
+			else if (node->next != nullptr)
+			{
+				cout << "Deleting node" << endl;
+				node = node->next;
+				Node * burnNode = node->prev;
+				burnNode = nullptr;
+				delete burnNode;
+			}
+		}
+
+		node = nullptr;
+		delete node;
+		head = nullptr;
+		delete head;
+		tail = nullptr;
+		delete tail;
+	}
+	void resize(size_t newSize)
+	{
+
+	}
 
 	class iterator
 	{

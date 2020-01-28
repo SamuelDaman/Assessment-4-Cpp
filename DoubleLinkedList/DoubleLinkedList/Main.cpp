@@ -10,6 +10,7 @@ using std::endl;
 int main()
 {
 	tList<int> test = tList<int>();
+	cout << "is empty: " << test.empty() << endl;
 	test.push_front(5);
 	cout << "front: " << test.front() << endl;
 	test.push_front(6);
@@ -26,16 +27,22 @@ int main()
 	test.push_back(1);
 	cout << "back: " << test.back() << endl;
 
-	test.remove(7);
-	//test.remove(6);
-	//test.remove(5);
-	//test.remove(4);
-	//test.remove(3);
-	//test.remove(2);
+	cout << "is empty: " << test.empty() << endl;
+
 	test.remove(1);
+	test.remove(3);
+	test.remove(5);
+	test.remove(4);
+	test.remove(2);
+	//test.remove(2);
+	//test.remove(7);
 
 	cout << "front: " << test.front() << endl;
 	cout << "back: " << test.back() << endl;
+
+	test.clear();
+
+	cout << "is empty: " << test.empty() << endl;
 
 	while (true) {}
 }
