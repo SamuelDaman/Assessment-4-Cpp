@@ -10,12 +10,17 @@ using std::endl;
 int main()
 {
 	tList<int> test = tList<int>();
+
+	tList<int> copy = tList<int>(test);
+
 	cout << "is empty: " << test.empty() << endl;
 	test.push_front(5);
 	cout << "front: " << test.front() << endl;
 	test.push_front(6);
 	cout << "front: " << test.front() << endl;
 	test.push_front(7);
+	cout << "front: " << test.front() << endl;
+	test.push_front(8);
 	cout << "front: " << test.front() << endl;
 
 	test.push_back(4);
@@ -29,18 +34,16 @@ int main()
 
 	cout << "is empty: " << test.empty() << endl;
 
-	//test.remove(1);
-	//test.remove(3);
-	//test.remove(5);
-	//test.remove(4);
-	//test.remove(2);
-	//test.remove(2);
+	test.remove(1);
+	test.remove(8);
+	test.remove(2);
 	//test.remove(7);
+	//test.remove(3);
+	//test.remove(6);
+	//test.remove(4);
+	//test.remove(5);
 
 	//test.resize(9);
-
-	//tList<int> copy = tList<int>(test);
-	tList<int> copy;
 
 	copy.pop_front();
 

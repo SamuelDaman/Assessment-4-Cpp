@@ -315,19 +315,25 @@ public:
 		}
 		iterator& operator++()
 		{
-			return ++this;
+			cur = cur->next;
+			return *this;
 		}
 		iterator operator++(int)
 		{
-			return this++;
+			iterator newIterator = *this;
+			cur = cur->next;
+			return newIterator;
 		}
 		iterator& operator--()
 		{
-			return --this;
+			cur = cur->prev;
+			return *this;
 		}
 		iterator operator--(int)
 		{
-			return this--;
+			iterator newIterator = *this;
+			cur = cur->prev;
+			return newIterator;
 		}
 	};
 
