@@ -49,7 +49,7 @@ template<typename K, typename V>
 class tHashmap
 {
 	V * data;
-	bool * isTaken;
+	K * dataKey;
 	size_t dataCapacity;
 
 public:
@@ -57,7 +57,7 @@ public:
 	{
 		dataCapacity = 10;
 		data = new V[dataCapacity];
-		isTaken = new bool[dataCapacity]{ false };
+		dataKey = new K[dataCapacity];
 	}
 	tHashmap(const tHashmap& other)
 	{
@@ -66,7 +66,7 @@ public:
 		for (size_t i = 0; i < dataCapacity; i++)
 		{
 			data[i] = other.data[i];
-			isTaken[i] = other.isTaken[i];
+			dataKey[i] = other.dataKey[i];
 		}
 	}
 	tHashmap& operator=(const tHashmap& rhs)
@@ -76,43 +76,48 @@ public:
 		for (size_t i = 0; i < dataCapacity; i++)
 		{
 			data[i] = rhs.data[i];
-			isTaken[i] = rhs.isTaken[i];
+			dataKey[i] = rhs.dataKey[i];
 		}
 		return *this;
 	}
 	~tHashmap()
 	{
 		delete data;
+		delete dataKey;
 	}
 
-	V& operator[] (const K& key)
+	V& operator[](const K& key)
 	{
 		auto index = hash(key) % dataCapacity;
+		dataKey[index] = key;
 		return data[index];
-		/*if (data[index] == V())
+	}
+
+	V& at(const K& key)
+	{
+		auto index = hash(key) % dataCapacity;
+		if (dataKey[index] != K())
 		{
 			return data[index];
 		}
-		else
-		{
-			size_t i = index;
-			while (true)
-			{
-				if (data[i] == V())
-				{
-					return data[i];
-				}
-				i++;
-				if (i == dataCapacity - 1)
-				{
-					i = 0;
-				}
-				if (i == index - 1)
-				{
-					break;
-				}
-			}
-			return data[index];
-		}*/
+	}
+
+	size_t count(const K& key)
+	{
+
+	}
+
+	void clear()
+	{
+		dataKey = nullptr;
+		data = nullptr;
+	}
+	size_t size() const
+	{
+		
+	}
+	bool empty() const
+	{
+
 	}
 };

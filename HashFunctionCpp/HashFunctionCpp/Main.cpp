@@ -7,6 +7,7 @@ int main()
 {
 	tHashmap<string, int> favoriteNumbersByName = tHashmap<string, int>();
 
+	//cout << "Value: " << favoriteNumbersByName.at("Terry") << endl;
 	favoriteNumbersByName["Terry"] = 5;
 	cout << "Terry: " << favoriteNumbersByName["Terry"] << endl;
 	cout << endl;
