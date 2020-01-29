@@ -32,20 +32,32 @@ size_t hash<char>(const char& val)
 template<>
 size_t hash<string>(const string& val)
 {
-	return (int)val[0] * 2654435761 % std::numeric_limits<size_t>::max();
+	int hashSum = 0;
+	size_t size = 0;
+	while (val[size] != NULL)
+	{
+		size++;
+	}
+	for (size_t i = 0; i < size; i++)
+	{
+		hashSum += (int)val[i] * 2654435761 % std::numeric_limits<size_t>::max();
+	}
+	return hashSum;
 }
 
 template<typename K, typename V>
 class tHashmap
 {
 	V * data;
+	bool * isTaken;
 	size_t dataCapacity;
 
 public:
 	tHashmap()
 	{
-		dataCapacity = 30;
+		dataCapacity = 10;
 		data = new V[dataCapacity];
+		isTaken = new bool[dataCapacity]{ false };
 	}
 	tHashmap(const tHashmap& other)
 	{
@@ -54,6 +66,7 @@ public:
 		for (size_t i = 0; i < dataCapacity; i++)
 		{
 			data[i] = other.data[i];
+			isTaken[i] = other.isTaken[i];
 		}
 	}
 	tHashmap& operator=(const tHashmap& rhs)
@@ -63,6 +76,7 @@ public:
 		for (size_t i = 0; i < dataCapacity; i++)
 		{
 			data[i] = rhs.data[i];
+			isTaken[i] = rhs.isTaken[i];
 		}
 		return *this;
 	}
@@ -73,16 +87,32 @@ public:
 
 	V& operator[] (const K& key)
 	{
-		size_t index;
-		cout << typeid(key).name() << endl;
-		if (typeid(key).name() == "char")
+		auto index = hash(key) % dataCapacity;
+		return data[index];
+		/*if (data[index] == V())
 		{
-			index = (size_t)key[0] * 2654435761 % dataCapacity;
+			return data[index];
 		}
 		else
 		{
-			index = 0;
-		}
-		return data[index];
+			size_t i = index;
+			while (true)
+			{
+				if (data[i] == V())
+				{
+					return data[i];
+				}
+				i++;
+				if (i == dataCapacity - 1)
+				{
+					i = 0;
+				}
+				if (i == index - 1)
+				{
+					break;
+				}
+			}
+			return data[index];
+		}*/
 	}
 };

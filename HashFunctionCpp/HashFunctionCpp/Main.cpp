@@ -5,24 +5,92 @@
 
 int main()
 {
-	tHashmap<string, int> * favoriteNumbersByName = new tHashmap<string, int>[5];
+	tHashmap<string, int> favoriteNumbersByName = tHashmap<string, int>();
 
-	favoriteNumbersByName[0]["Terry"] = 5;
-	cout << favoriteNumbersByName[0]["Terry"] << endl;
+	favoriteNumbersByName["Terry"] = 5;
+	cout << "Terry: " << favoriteNumbersByName["Terry"] << endl;
+	cout << endl;
 	
-	favoriteNumbersByName[1]["Harry"] = 12;
-	cout << favoriteNumbersByName[1]["Harry"] << endl;
+	favoriteNumbersByName["Harry"] = 12;
+	cout << "Terry: " << favoriteNumbersByName["Terry"] << endl;
+	cout << "Harry: " << favoriteNumbersByName["Harry"] << endl;
+	cout << endl;
 
-	favoriteNumbersByName[2] = tHashmap<string, int>(favoriteNumbersByName[0]);
-	cout << favoriteNumbersByName[2]["Terry"] << endl;
+	favoriteNumbersByName["Larry"] = 8;
+	cout << "Terry: " << favoriteNumbersByName["Terry"] << endl;
+	cout << "Harry: " << favoriteNumbersByName["Harry"] << endl;
+	cout << "Larry: " << favoriteNumbersByName["Larry"] << endl;
+	cout << endl;
 
-	favoriteNumbersByName[3] = favoriteNumbersByName[1];
-	cout << favoriteNumbersByName[3]["Harry"] << endl;
+	favoriteNumbersByName["Perry"] = 24;
+	cout << "Terry: " << favoriteNumbersByName["Terry"] << endl;
+	cout << "Harry: " << favoriteNumbersByName["Harry"] << endl;
+	cout << "Larry: " << favoriteNumbersByName["Larry"] << endl;
+	cout << "Perry: " << favoriteNumbersByName["Perry"] << endl;
+	cout << endl;
 
-	favoriteNumbersByName[4]["Larry"] = 8;
-	cout << favoriteNumbersByName[4]["Larry"] << endl;
+	favoriteNumbersByName["Jerry"] = 17;
+	cout << "Terry: " << favoriteNumbersByName["Terry"] << endl;
+	cout << "Harry: " << favoriteNumbersByName["Harry"] << endl;
+	cout << "Larry: " << favoriteNumbersByName["Larry"] << endl;
+	cout << "Perry: " << favoriteNumbersByName["Perry"] << endl;
+	cout << "Jerry: " << favoriteNumbersByName["Jerry"] << endl;
+	cout << endl;
 
-	delete[] favoriteNumbersByName;
+	favoriteNumbersByName["Barry"] = 99;
+	cout << "Terry: " << favoriteNumbersByName["Terry"] << endl;
+	cout << "Harry: " << favoriteNumbersByName["Harry"] << endl;
+	cout << "Larry: " << favoriteNumbersByName["Larry"] << endl;
+	cout << "Perry: " << favoriteNumbersByName["Perry"] << endl;
+	cout << "Jerry: " << favoriteNumbersByName["Jerry"] << endl;
+	cout << "Barry: " << favoriteNumbersByName["Barry"] << endl;
+	cout << endl;
+
+	favoriteNumbersByName["Gerry"] = 18;
+	cout << "Terry: " << favoriteNumbersByName["Terry"] << endl;
+	cout << "Harry: " << favoriteNumbersByName["Harry"] << endl;
+	cout << "Larry: " << favoriteNumbersByName["Larry"] << endl;
+	cout << "Perry: " << favoriteNumbersByName["Perry"] << endl;
+	cout << "Jerry: " << favoriteNumbersByName["Jerry"] << endl;
+	cout << "Barry: " << favoriteNumbersByName["Barry"] << endl;
+	cout << "Gerry: " << favoriteNumbersByName["Gerry"] << endl;
+	cout << endl;
+
+	favoriteNumbersByName["Carry"] = 42;
+	cout << "Terry: " << favoriteNumbersByName["Terry"] << endl;
+	cout << "Harry: " << favoriteNumbersByName["Harry"] << endl;
+	cout << "Larry: " << favoriteNumbersByName["Larry"] << endl;
+	cout << "Perry: " << favoriteNumbersByName["Perry"] << endl;
+	cout << "Jerry: " << favoriteNumbersByName["Jerry"] << endl;
+	cout << "Barry: " << favoriteNumbersByName["Barry"] << endl;
+	cout << "Gerry: " << favoriteNumbersByName["Gerry"] << endl;
+	cout << "Carry: " << favoriteNumbersByName["Carry"] << endl;
+	cout << endl;
+
+	favoriteNumbersByName["Mary"] = 65;
+	cout << "Terry: " << favoriteNumbersByName["Terry"] << endl;
+	cout << "Harry: " << favoriteNumbersByName["Harry"] << endl;
+	cout << "Larry: " << favoriteNumbersByName["Larry"] << endl;
+	cout << "Perry: " << favoriteNumbersByName["Perry"] << endl;
+	cout << "Jerry: " << favoriteNumbersByName["Jerry"] << endl;
+	cout << "Barry: " << favoriteNumbersByName["Barry"] << endl;
+	cout << "Gerry: " << favoriteNumbersByName["Gerry"] << endl;
+	cout << "Carry: " << favoriteNumbersByName["Carry"] << endl;
+	cout << "Mary: " << favoriteNumbersByName["Mary"] << endl;
+	cout << endl;
+
+	favoriteNumbersByName["Gary"] = 74;
+	cout << "Terry: " << favoriteNumbersByName["Terry"] << endl;
+	cout << "Harry: " << favoriteNumbersByName["Harry"] << endl;
+	cout << "Larry: " << favoriteNumbersByName["Larry"] << endl;
+	cout << "Perry: " << favoriteNumbersByName["Perry"] << endl;
+	cout << "Jerry: " << favoriteNumbersByName["Jerry"] << endl;
+	cout << "Barry: " << favoriteNumbersByName["Barry"] << endl;
+	cout << "Gerry: " << favoriteNumbersByName["Gerry"] << endl;
+	cout << "Carry: " << favoriteNumbersByName["Carry"] << endl;
+	cout << "Mary: " << favoriteNumbersByName["Mary"] << endl;
+	cout << "Gary: " << favoriteNumbersByName["Gary"] << endl;
+	cout << endl;
 
 	cout << "Done" << endl;
 
