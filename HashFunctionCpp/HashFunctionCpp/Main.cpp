@@ -8,6 +8,11 @@ int main()
 	tHashmap<string, int> favoriteNumbersByName = tHashmap<string, int>();
 
 	//cout << "Value: " << favoriteNumbersByName.at("Terry") << endl;
+
+	cout << "Size: " << favoriteNumbersByName.size() << endl;
+	cout << "Is Empty: " << favoriteNumbersByName.empty() << endl;
+	cout << endl;
+
 	favoriteNumbersByName["Terry"] = 5;
 	cout << "Terry: " << favoriteNumbersByName["Terry"] << endl;
 	cout << endl;
@@ -17,7 +22,7 @@ int main()
 	cout << "Harry: " << favoriteNumbersByName["Harry"] << endl;
 	cout << endl;
 
-	favoriteNumbersByName["Larry"] = 8;
+	favoriteNumbersByName["Larry"] = 0;
 	cout << "Terry: " << favoriteNumbersByName["Terry"] << endl;
 	cout << "Harry: " << favoriteNumbersByName["Harry"] << endl;
 	cout << "Larry: " << favoriteNumbersByName["Larry"] << endl;
@@ -91,6 +96,10 @@ int main()
 	cout << "Carry: " << favoriteNumbersByName["Carry"] << endl;
 	cout << "Mary: " << favoriteNumbersByName["Mary"] << endl;
 	cout << "Gary: " << favoriteNumbersByName["Gary"] << endl;
+	cout << endl;
+
+	cout << "Size: " << favoriteNumbersByName.size() << endl;
+	cout << "Is Empty: " << favoriteNumbersByName.empty() << endl;
 	cout << endl;
 
 	cout << "Done" << endl;

@@ -58,6 +58,10 @@ public:
 		dataCapacity = 10;
 		data = new V[dataCapacity];
 		dataKey = new K[dataCapacity];
+		for (size_t i = 0; i < dataCapacity; i++)
+		{
+			data[i] = NULL;
+		}
 	}
 	tHashmap(const tHashmap& other)
 	{
@@ -114,10 +118,22 @@ public:
 	}
 	size_t size() const
 	{
-		
+		size_t sizeCount = 0;
+		for (size_t i = 0; i < dataCapacity; i++)
+		{
+			if (data[i] != NULL || dataKey[i] != K())
+			{
+				sizeCount++;
+			}
+		}
+		return sizeCount;
 	}
 	bool empty() const
 	{
-
+		if (size() == 0)
+		{
+			return true;
+		}
+		return false;
 	}
 };
