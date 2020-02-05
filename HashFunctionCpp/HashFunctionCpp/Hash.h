@@ -5,7 +5,6 @@
 #include <iostream>
 #include <limits>
 #include <string.h>
-#include <typeinfo>
 
 using std::cout;
 using std::endl;
@@ -93,6 +92,41 @@ public:
 	V& operator[](const K& key)
 	{
 		auto index = hash(key) % dataCapacity;
+		if (dataKey[index] == K())
+		{
+			dataKey[index] = key;
+			return data[index];
+		}
+		else if (dataKey[index] == key)
+		{
+			return data[index];
+		}
+		else if (dataKey[index] != K())
+		{
+			size_t i = index;
+			bool l = false;
+			while (true)
+			{
+				if (dataKey[i] == K() || dataKey[i] == key)
+				{
+					dataKey[i] = key;
+					return data[i];
+				}
+				else
+				{
+					i++;
+				}
+				if (i == dataCapacity - 1)
+				{
+					i = 0;
+					l = true;
+				}
+				if (i == index - 1 && l == true)
+				{
+					break;
+				}
+			}
+		}
 		dataKey[index] = key;
 		return data[index];
 	}
@@ -106,11 +140,6 @@ public:
 		}
 	}
 
-	size_t count(const K& key)
-	{
-
-	}
-
 	void clear()
 	{
 		dataKey = nullptr;
@@ -118,15 +147,22 @@ public:
 	}
 	size_t size() const
 	{
-		size_t sizeCount = 0;
-		for (size_t i = 0; i < dataCapacity; i++)
+		if (data != nullptr && dataKey != nullptr)
 		{
-			if (data[i] != NULL || dataKey[i] != K())
+			size_t sizeCount = 0;
+			for (size_t i = 0; i < dataCapacity; i++)
 			{
-				sizeCount++;
+				if (data[i] != NULL || dataKey[i] != K())
+				{
+					sizeCount++;
+				}
 			}
+			return sizeCount;
 		}
-		return sizeCount;
+		else
+		{
+			return 0;
+		}
 	}
 	bool empty() const
 	{
