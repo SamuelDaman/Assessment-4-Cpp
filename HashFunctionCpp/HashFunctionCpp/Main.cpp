@@ -7,8 +7,6 @@ int main()
 {
 	tHashmap<string, int> favoriteNumbersByName = tHashmap<string, int>();
 
-	//cout << "Value: " << favoriteNumbersByName.at("Terry") << endl;
-
 	cout << "Size: " << favoriteNumbersByName.size() << endl;
 	cout << "Is Empty: " << favoriteNumbersByName.empty() << endl;
 	cout << endl;
@@ -123,10 +121,31 @@ int main()
 	cout << "Is Empty: " << favoriteNumbersByName.empty() << endl;
 	cout << endl;
 
-	cout << "Clearing original array." << endl;
+	cout << "Copying elements into new map." << endl;
+	tHashmap<string, int> copyNumbersByName = favoriteNumbersByName;
+	cout << endl;
+
+	cout << "Clearing original map." << endl;
 	favoriteNumbersByName.clear();
 	cout << "Size: " << favoriteNumbersByName.size() << endl;
 	cout << "Is Empty: " << favoriteNumbersByName.empty() << endl;
+	cout << endl;
+
+	cout << "Printing all copied Keys and Values." << endl;
+	cout << "Terry: " << copyNumbersByName["Terry"] << endl;
+	cout << "Harry: " << copyNumbersByName["Harry"] << endl;
+	cout << "Larry: " << copyNumbersByName["Larry"] << endl;
+	cout << "Perry: " << copyNumbersByName["Perry"] << endl;
+	cout << "Jerry: " << copyNumbersByName["Jerry"] << endl;
+	cout << "Barry: " << copyNumbersByName["Barry"] << endl;
+	cout << "Gerry: " << copyNumbersByName["Gerry"] << endl;
+	cout << "Carry: " << copyNumbersByName["Carry"] << endl;
+	cout << "Mary: " << copyNumbersByName["Mary"] << endl;
+	cout << "Gary: " << copyNumbersByName["Gary"] << endl;
+	cout << endl;
+
+	cout << "Size: " << copyNumbersByName.size() << endl;
+	cout << "Is Empty: " << copyNumbersByName.empty() << endl;
 	cout << endl;
 
 	cout << "Done" << endl;
