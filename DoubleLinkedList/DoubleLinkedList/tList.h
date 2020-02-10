@@ -303,11 +303,11 @@ public:
 
 		bool operator==(const iterator& rhs) const
 		{
-			return (iterator == rhs);
+			return (cur == rhs.cur);
 		}
 		bool operator!=(const iterator& rhs) const
 		{
-			return (iterator != rhs);
+			return (cur != rhs.cur);
 		}
 		T& operator*() const
 		{
