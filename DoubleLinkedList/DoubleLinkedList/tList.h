@@ -1,4 +1,4 @@
-//  tList.h
+// tList.h
 
 #pragma once
 #include <iostream>
@@ -11,21 +11,22 @@ class tList
 {
 	struct Node
 	{
-		T data;
-		Node * prev;
-		Node * next;
+		T data;			// Data for the element stored.
+		Node * prev;	// Pointer to the following node.
+		Node * next;	// Pointer to the previous node.
 	};
 
-	Node * head;
-	Node * tail;
+	Node * head;	// Pointer to the head of the list.
+	Node * tail;	// Pointer to the tail of the list.
 
 public:
-	//  Constructors and Destuctor.
+	// Initializes head to null.
 	tList()
 	{
 		head = nullptr;
 		tail = nullptr;
 	}
+	// Copy constuctor.
 	tList(const tList& other)
 	{
 		Node * node = other.head;
@@ -44,6 +45,7 @@ public:
 			}
 		}
 	}
+	// Copy assignment.
 	tList& operator=(const tList &rhs)
 	{
 		Node * node = rhs.head;
@@ -63,12 +65,13 @@ public:
 		}
 		return *this;
 	}
+	// Delete all nodes upon destruction.
 	~tList()
 	{
-		
+		clear();
 	}
 
-	//  Push and pop functions.
+	// Adds element to front.
 	void push_front(const T& val)
 	{
 		Node * newNode = new Node;
@@ -87,6 +90,7 @@ public:
 		}
 		head = newNode;
 	}
+	// Removes element from front.
 	void pop_front()
 	{
 		if (head != nullptr)
@@ -101,6 +105,7 @@ public:
 			delete burnNode;
 		}
 	}
+	// Adds element to back.
 	void push_back(const T& val)
 	{
 		Node * newNode = new Node;
@@ -119,6 +124,7 @@ public:
 		}
 		tail = newNode;
 	}
+	// Removes element from back.
 	void pop_back()
 	{
 		if (tail != nullptr)
@@ -134,25 +140,28 @@ public:
 		}
 	}
 
-	//  Front and back check functions.
+	// Returns the element at the head.
 	T& front()
 	{
 		return head->data;
 	}
+	// Returns the element at the head (const).
 	const T& front() const
 	{
 		return head->data;
 	}
+	// Returns the element at the back.
 	T& back()
 	{
 		return tail->data;
 	}
+	// Returns the element at the back (const).
 	const T& back() const
 	{
 		return tail->data;
 	}
 
-	//  Size Check
+	// Checks the size of the list.
 	size_t listSize()
 	{
 		Node * node = head;
@@ -174,12 +183,11 @@ public:
 		return listCounter;
 	}
 
-	//  Remove function.
+	// Removes all elements equal to the given value.
 	void remove(const T& val)
 	{
 		while (head != nullptr && head->data == val)
 		{
-			cout << "The first node will be deleted" << endl;
 			pop_front();
 		}
 
@@ -189,12 +197,10 @@ public:
 		{
 			if (node->next == nullptr)
 			{
-				cout << "End of the list" << endl;
 				break;
 			}
 			else if (node->next->data == val)
 			{
-				cout << "The next node will be deleted" << endl;
 				Node * burnNode = node->next;
 				if (node->next->next != nullptr)
 				{
@@ -210,17 +216,17 @@ public:
 			}
 			else
 			{
-				cout << "Moving on to the next node" << endl;
 				node = node->next;
 			}
 		}
 	}
 
-	//  Miscellaneous functions.
+	// Returns true if there are no elements.
 	bool empty() const
 	{
 		return (head == nullptr && tail == nullptr);
 	}
+	// Destroys every single node in the list.
 	void clear()
 	{
 		size_t listCount = listSize();
@@ -233,41 +239,25 @@ public:
 		head = nullptr;
 		tail = nullptr;
 	}
+	// Resizes the list to contain the given number of elements.
 	void resize(size_t newSize)
 	{
-		Node * node = head;
-		size_t listSize = 0;
+		size_t size = listSize();
 
-		while (node != nullptr)
-		{
-			if (node->next == nullptr)
-			{
-				listSize++;
-				break;
-			}
-			else
-			{
-				node = node->next;
-				listSize++;
-			}
-		}
-
-		cout << "list size: " << listSize << endl;
-
-		if (listSize == newSize)
+		if (size == newSize)
 		{
 			return;
 		}
-		else if (listSize > newSize)
+		else if (size > newSize)
 		{
-			for (size_t i = newSize; i < listSize; i++)
+			for (size_t i = newSize; i < size; i++)
 			{
 				pop_back();
 			}
 		}
-		else if (listSize < newSize)
+		else if (size < newSize)
 		{
-			for (size_t i = listSize; i < newSize; i++)
+			for (size_t i = size; i < newSize; i++)
 			{
 				Node * newNode = new Node;
 				newNode->prev = tail;
@@ -289,46 +279,60 @@ public:
 
 	class iterator
 	{
-		Node * cur;
+		Node * cur;	// The current node being operated upon.
 
 	public:
+		// Initializes an empty operator pointing to null.
 		iterator()
 		{
 			cur = nullptr;
 		}
+		// Initializes an iterator pointing to the given node.
 		iterator(Node * startNode)
 		{
 			cur = startNode;
 		}
 
+		// Returns true if the iterator points to the same node.
 		bool operator==(const iterator& rhs) const
 		{
 			return (cur == rhs.cur);
 		}
+		// Returns false if the iterator points to the same node.
 		bool operator!=(const iterator& rhs) const
 		{
 			return (cur != rhs.cur);
 		}
-		T& operator*() const
+		// Returns a reference to the element pointed to by the current node.
+		T& operator*()
 		{
 			return cur->data;
 		}
+		// Returns a reference to the element pointed to by the current node.
+		const T& operator*() const
+		{
+			return cur->data;
+		}
+		// Pre-increment (returns a reference to this iterator after it is incremented).
 		iterator& operator++()
 		{
 			cur = cur->next;
 			return *this;
 		}
+		// Post-increment (returns an iterator as it was before it was incremented).
 		iterator operator++(int)
 		{
 			iterator newIterator = *this;
 			cur = cur->next;
 			return newIterator;
 		}
+		// Pre-decrement (returns a reference to this iterator after it is decremented).
 		iterator& operator--()
 		{
 			cur = cur->prev;
 			return *this;
 		}
+		// Post-decrement (returns an iterator as it was before it was decremented).
 		iterator operator--(int)
 		{
 			iterator newIterator = *this;
@@ -337,24 +341,49 @@ public:
 		}
 	};
 
-	iterator begin()
+	// Iterator constructors for iterating forward.
+
+	// Returns an iterator pointing to the first element.
+	iterator beginFront()
 	{
-		iterator newIterator = iterator(head);
-		return newIterator;
+		return iterator(head);
 	}
-	const iterator begin() const
+	// Returns a const iterator pointing to the first element.
+	const iterator beginFront() const
 	{
-		iterator newIterator = iterator(head);
-		return newIterator;
+		return iterator(head);
 	}
-	iterator end()
+	// Returns an iterator pointing to one past the last element.
+	iterator endFront()
 	{
-		iterator newIterator = iterator(tail->next);
-		return newIterator;
+		return iterator(tail->next);
 	}
-	const iterator end() const
+	// Returns a const iterator pointing to one past the last element.
+	const iterator endFront() const
 	{
-		iterator newIterator = iterator(tail->next);
-		return newIterator;
+		return iterator(tail->next);
+	}
+
+	// Iterator constructors for iterating forward.
+
+	// Returns an iterator pointing to the last element.
+	iterator beginBack()
+	{
+		return iterator(tail);
+	}
+	// Returns a const iterator pointing to the last element.
+	const iterator beginBack() const
+	{
+		return iterator(tail);
+	}
+	// Returns an iterator pointing to one before the first element.
+	iterator endBack()
+	{
+		return iterator(head->prev);
+	}
+	// Returns a const iterator pointing to one before the first element.
+	const iterator endBack() const
+	{
+		return iterator(head->prev);
 	}
 };

@@ -1,4 +1,4 @@
-//  Main.cpp
+// Main.cpp
 
 #include <iostream>
 #include "tList.h"
@@ -43,11 +43,17 @@ int main()
 	//test.remove(4);
 	//test.remove(5);
 
-	//test.resize(9);
-
-	copy.pop_front();
+	for (auto iter = test.beginFront(); iter != test.endFront(); ++iter)
+	{
+		cout << *iter << endl;
+	}
+	for (auto iter = test.beginBack(); iter != test.endBack(); --iter)
+	{
+		cout << *iter << endl;
+	}
 
 	copy = test;
+	test.resize(9);
 
 	cout << "front: " << test.front() << endl;
 	cout << "back: " << test.back() << endl;
@@ -58,6 +64,7 @@ int main()
 	test.clear();
 
 	cout << "is empty: " << test.empty() << endl;
+	cout << "is empty: " << copy.empty() << endl;
 
 	while (true) {}
 }
