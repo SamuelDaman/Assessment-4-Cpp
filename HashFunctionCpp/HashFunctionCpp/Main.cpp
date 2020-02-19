@@ -3,12 +3,13 @@
 #include <iostream>
 #include "Hash.h"
 
+// This is a sequence of functions used to demonstrate the hashing function.
 int main()
 {
-	tHashmap<string, int> favoriteNumbersByName = tHashmap<string, int>();
+	tHashmap<string, int> favoriteNumbersByName = tHashmap<string, int>();	// Hashmap being used
 
 	cout << "Size: " << favoriteNumbersByName.size() << endl;
-	cout << "Is Empty: " << favoriteNumbersByName.empty() << endl;
+	cout << "Is the map empty? (0 = false) (1 = true): " << favoriteNumbersByName.empty() << endl;
 	cout << endl;
 
 
@@ -127,8 +128,8 @@ int main()
 
 	cout << "Clearing original map." << endl;
 	favoriteNumbersByName.clear();
-	cout << "Size: " << favoriteNumbersByName.size() << endl;
-	cout << "Is Empty: " << favoriteNumbersByName.empty() << endl;
+	cout << "Original\'s size: " << favoriteNumbersByName.size() << endl;
+	cout << "Is the original empty: " << favoriteNumbersByName.empty() << endl;
 	cout << endl;
 
 	cout << "Printing all copied Keys and Values." << endl;
@@ -144,8 +145,8 @@ int main()
 	cout << "Gary: " << copyNumbersByName["Gary"] << endl;
 	cout << endl;
 
-	cout << "Size: " << copyNumbersByName.size() << endl;
-	cout << "Is Empty: " << copyNumbersByName.empty() << endl;
+	cout << "Copy\'s Size: " << copyNumbersByName.size() << endl;
+	cout << "Is it the copy empty: " << copyNumbersByName.empty() << endl;
 	cout << endl;
 
 	cout << "Done" << endl;

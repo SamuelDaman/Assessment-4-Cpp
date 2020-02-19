@@ -6,9 +6,10 @@
 using std::cout;
 using std::endl;
 
+// Quick demonstration of the sorting algorithm.
 int main()
 {
-	tSorting<int> test = tSorting<int>();
+	tSorting<int> test = tSorting<int>();	// The container being operated upon.
 
 	test[0] = 13;
 	test[1] = 54;
@@ -34,6 +35,7 @@ int main()
 			cout << test[i] << endl;
 		}
 	}
+	cout << endl;
 
 	cout << "Sorted array:" << endl;
 	test.insertionSort();
